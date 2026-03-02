@@ -1,0 +1,21 @@
+[
+  {
+    "text": "This Agreement is made on 2026-01-15 between Alpha Technologies Pvt Ltd and Beta Holdings LLC for USD 250,000. Either party may terminate this agreement with 30 days written notice.",
+    "entities": [
+      [26, 36, "DATE"],
+      [45, 71, "PARTY"],
+      [76, 93, "PARTY"],
+      [98, 109, "AMOUNT"],
+      [124, 188, "TERMINATION"]
+    ]
+  },
+  {
+    "text": "Contract start date is March 2, 2026. The Client, Nova Legal Inc., shall pay $15,000 monthly. Termination is permitted for material breach.",
+    "entities": [
+      [23, 36, "DATE"],
+      [50, 65, "PARTY"],
+      [77, 84, "AMOUNT"],
+      [94, 140, "TERMINATION"]
+    ]
+  }
+]
