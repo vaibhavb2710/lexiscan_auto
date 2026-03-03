@@ -71,6 +71,7 @@ def extract_entities(text):
         re.findall(r"\b(?:USD|INR|EUR|GBP|Rs\.?)?\s?\$?\s?\d[\d,]*(?:\.\d{1,2})?\b", text, re.IGNORECASE)
     )
 
+
     # Pull full sentences with termination/expiry language.
     sentence_pattern = re.compile(
         r"[^.]*\b(termination|terminate|terminated|expiry|expiration|end of term)\b[^.]*\.",
@@ -82,3 +83,4 @@ def extract_entities(text):
         entities[key] = _unique(entities[key])
 
     return entities
+
