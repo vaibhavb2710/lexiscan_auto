@@ -15,3 +15,4 @@ def test_validate_entities_normalizes_and_filters():
     assert validated["party_names"] == ["Alpha Corp", "Beta LLC"]
     assert validated["amounts"] == ["USD 10,000", "$250.75"]
     assert validated["termination_clauses"] == ["Termination is allowed with 30 days notice."]
+
