@@ -49,54 +49,168 @@ def save_output_json(payload, source_filename):
 @app.route("/")
 def home():
     return """
-    <html>
-    <head>
-        <title>LexiScan Auto</title>
-        <style>
-        body{
-            font-family: Arial;
-            background:#f4f6f8;
-            text-align:center;
-        }
-        .box{
-            background:white;
-            width:500px;
-            margin:auto;
-            margin-top:100px;
-            padding:40px;
-            border-radius:10px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-        }
-        button{
-            padding:10px 20px;
-            background:#2ecc71;
-            border:none;
-            color:white;
-            border-radius:5px;
-        }
-        </style>
-    </head>
+<!DOCTYPE html>
+<html>
+<head>
+<title>LexiScan Auto - AI Legal Analyzer</title>
 
-    <body>
+<style>
 
-    <div class="box">
-        <h2>LexiScan Auto</h2>
-        <p>Upload a Legal Contract (.pdf or .txt)</p>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
 
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".pdf,.txt" required>
-            <br><br>
-            <button type="submit">Process Document</button>
-        </form>
+body{
+height:100vh;
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
 
-        <p style="margin-top:20px;">
-        Add <b>?save_output=true</b> to save JSON output
-        </p>
-    </div>
+.container{
+width:700px;
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(15px);
+padding:40px;
+border-radius:16px;
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
+text-align:center;
+}
 
-    </body>
-    </html>
-    """
+h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.subtitle{
+opacity:0.8;
+margin-bottom:30px;
+}
+
+.upload-box{
+border:2px dashed rgba(255,255,255,0.4);
+padding:40px;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.upload-box:hover{
+background:rgba(255,255,255,0.1);
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#loader{
+display:none;
+margin-top:20px;
+}
+
+.result{
+margin-top:30px;
+text-align:left;
+background:rgba(0,0,0,0.3);
+padding:20px;
+border-radius:10px;
+max-height:300px;
+overflow:auto;
+}
+
+pre{
+white-space:pre-wrap;
+word-wrap:break-word;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>LexiScan Auto</h1>
+<div class="subtitle">AI Powered Legal Contract Analyzer</div>
+
+<form id="uploadForm">
+
+<div class="upload-box">
+<input type="file" id="fileInput" name="file" accept=".pdf,.txt" required>
+<p>Drag & Drop or Select a Contract</p>
+</div>
+
+<button type="submit">Analyze Document</button>
+
+</form>
+
+<div id="loader">
+⏳ AI is analyzing your contract...
+</div>
+
+<div class="result" id="resultBox" style="display:none;">
+<h3>Extracted Entities</h3>
+<pre id="jsonOutput"></pre>
+</div>
+
+</div>
+
+<script>
+
+const form = document.getElementById("uploadForm")
+const loader = document.getElementById("loader")
+const resultBox = document.getElementById("resultBox")
+const jsonOutput = document.getElementById("jsonOutput")
+
+form.addEventListener("submit", async function(e){
+
+e.preventDefault()
+
+loader.style.display = "block"
+resultBox.style.display = "none"
+
+const fileInput = document.getElementById("fileInput")
+const formData = new FormData()
+
+formData.append("file", fileInput.files[0])
+
+const response = await fetch("/upload",{
+method:"POST",
+body:formData
+})
+
+const data = await response.json()
+
+loader.style.display = "none"
+resultBox.style.display = "block"
+
+jsonOutput.textContent = JSON.stringify(data,null,2)
+
+})
+
+</script>
+
+</body>
+</html>
+"""
 
 
 @app.route("/health")
