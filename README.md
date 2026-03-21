@@ -1,3 +1,5 @@
+
+
 # LexiScan Auto - Legal Contract Entity Extractor
 
 LexiScan Auto is a Flask microservice for extracting legal entities from native/scanned documents.
