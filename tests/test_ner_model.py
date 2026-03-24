@@ -1,6 +1,7 @@
 from nlp.ner_model import extract_entities
 
 
+
 def test_extract_entities_rule_based_fields_present():
     text = (
         "This agreement is made between Alpha Technologies and Beta Holdings. "
