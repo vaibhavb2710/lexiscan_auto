@@ -6,6 +6,7 @@ import spacy
 from spacy.training import Example
 
 
+
 def load_training_data(path):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     training_examples = []
