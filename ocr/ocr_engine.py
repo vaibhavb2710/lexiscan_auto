@@ -14,6 +14,7 @@ if TESSERACT_CMD:
 
 
 def _ocr_page(page):
+    
     # Convert PDF page to an image and pre-process for OCR stability.
     page_image = page.to_image(resolution=300).original
     gray = ImageOps.grayscale(page_image)
