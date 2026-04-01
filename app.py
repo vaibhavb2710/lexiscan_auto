@@ -50,6 +50,7 @@ def save_output_json(payload, source_filename):
 def home():
     return """
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>LexiScan Auto - AI Legal Analyzer</title>
