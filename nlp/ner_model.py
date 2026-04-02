@@ -15,6 +15,7 @@ def extract_entities(text):
         "termination_clauses": []
     }
 
+
     # -------- DATES ----------
     for ent in doc.ents:
         if ent.label_ == "DATE":
