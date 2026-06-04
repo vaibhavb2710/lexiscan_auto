@@ -16,6 +16,7 @@ def extract_entities(text):
     }
 
 
+
     # -------- DATES ----------
     for ent in doc.ents:
         if ent.label_ == "DATE":
