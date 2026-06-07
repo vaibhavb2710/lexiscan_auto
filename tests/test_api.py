@@ -55,3 +55,4 @@ def test_upload_rejects_unsupported_file_type():
         content_type="multipart/form-data",
     )
     assert response.status_code == 400
+
