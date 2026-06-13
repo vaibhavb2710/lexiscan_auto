@@ -23,6 +23,7 @@ def _normalize_date(raw_date):
     return None
 
 
+
 def _normalize_amount(raw_amount):
     value = raw_amount.strip()
     if re.search(r"(\$|USD|INR|EUR|GBP|Rs\.?)", value, re.IGNORECASE) and re.search(
