@@ -33,6 +33,7 @@ def _normalize_amount(raw_amount):
     return None
 
 
+
 def validate_entities(entities):
     validated = {
         "dates": [],
