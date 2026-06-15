@@ -6,12 +6,9 @@ import pytesseract
 from PIL import ImageOps
 
 
-
 TESSERACT_CMD = os.getenv("TESSERACT_CMD")
 if TESSERACT_CMD:
     pytesseract.pytesseract.tesseract_cmd = str(Path(TESSERACT_CMD))
-
-
 
 def _ocr_page(page):
     
